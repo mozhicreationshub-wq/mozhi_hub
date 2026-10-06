@@ -150,7 +150,7 @@
         <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="works.html">Works</a>
         <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="services.html">Services</a>
         <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="about.html">About</a>
-        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green transition-colors" href="contact.html">Inquire</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green transition-colors" href="https://wa.me/917603838356?text=Hi%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
       </nav>
     </header>
 
@@ -166,29 +166,11 @@
            
            <div class="flex-1 w-full relative">
               <!-- The Form -->
-              <form id="inquiry-form" novalidate class="flex flex-col gap-8" style="transition: opacity 0.5s ease, transform 0.5s ease;">
-                 <div class="flex flex-col gap-2">
-                    <label for="name" class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-charcoal">Your Name</label>
-                    <input type="text" id="name" name="name" class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors" placeholder="John Doe">
-                    <span id="name-error" class="font-sans text-[10px] text-red-600 uppercase tracking-widest hidden">Please enter your name.</span>
-                 </div>
-                 
-                 <div class="flex flex-col gap-2">
-                    <label for="contact" class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-charcoal">Email or Phone Number</label>
-                    <input type="text" id="contact" name="contact" class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors" placeholder="contact@example.com">
-                    <span id="contact-error" class="font-sans text-[10px] text-red-600 uppercase tracking-widest hidden">Please enter your email or phone.</span>
-                 </div>
-                 
-                 <div class="flex flex-col gap-2">
-                    <label for="requirement" class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-charcoal">Briefly describe your need</label>
-                    <textarea id="requirement" name="requirement" rows="3" class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors resize-none" placeholder="I am looking to build a new portfolio website..."></textarea>
-                    <span id="requirement-error" class="font-sans text-[10px] text-red-600 uppercase tracking-widest hidden">Please describe your requirement.</span>
-                 </div>
-                 
-                 <button type="submit" id="submit-btn" class="mt-4 self-start font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-10 py-4 transition-all duration-300">
-                    Send Inquiry
-                 </button>
-              </form>
+              <div class="flex flex-col gap-8">
+            <a href="https://wa.me/917603838356?text=Hi%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="mt-4 inline-block self-start font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-10 py-4 transition-all duration-300">
+              Enquire on WhatsApp
+            </a>
+          </div>
 
               <!-- Success State (hidden initially) -->
               <div id="inquiry-success" class="absolute inset-0 flex flex-col items-center justify-center text-center gap-6" style="opacity:0; pointer-events:none; transition: opacity 0.6s ease 0.3s;">

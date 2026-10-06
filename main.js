@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modalBody.innerHTML = `
         <h3 class="font-display text-3xl mb-4 text-heritage-charcoal">${data.title}</h3>
         <p class="font-body text-lg text-heritage-muted">${data.text}</p>
-        <button class="mt-8 font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-8 py-3 transition-colors" onclick="window.location.href='contact.html'">Inquire Now</button>
+        <button class="mt-8 font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-8 py-3 transition-colors" onclick="window.open('https://wa.me/917603838356?text=Hi%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20services.', '_blank')">Enquire on WhatsApp</button>
       `;
       
       modal.classList.remove('hidden');

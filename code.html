@@ -187,7 +187,7 @@
 
         <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="#services">Services</a>
         <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="#approach">Approach</a>
-        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green hover:text-heritage-green transition-colors" href="#inquiry">Inquire</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green hover:text-heritage-green transition-colors" href="https://wa.me/917603838356?text=Hi%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
       </nav>
       
     </header>
@@ -211,8 +211,8 @@
           </p>
           
           <div class="pt-6 border-t border-heritage-border max-w-sm">
-             <a class="group inline-flex items-center justify-between w-full font-sans text-xs uppercase tracking-widest font-semibold text-heritage-green hover:text-heritage-green transition-colors" href="#inquiry">
-                <span>Submit an Inquiry</span>
+             <a class="group inline-flex items-center justify-between w-full font-sans text-xs uppercase tracking-widest font-semibold text-heritage-green hover:text-heritage-green transition-colors" href="https://wa.me/917603838356?text=Hi%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer">
+                <span>Enquire on WhatsApp</span>
                 <span class="material-symbols-outlined transform group-hover:translate-x-2 transition-transform duration-300">arrow_right_alt</span>
              </a>
           </div>
@@ -299,28 +299,11 @@
               </div>
               
               <div class="flex-1 w-full">
-                 <form action="/api/secure-inquiry-endpoint" method="POST" class="flex flex-col gap-8">
-                    <input type="hidden" name="csrf_token" value="example-token-12345">
-                    
-                    <div class="flex flex-col gap-2">
-                       <label for="name" class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-charcoal">Your Name</label>
-                       <input type="text" id="name" name="name" required class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors" placeholder="John Doe">
-                    </div>
-                    
-                    <div class="flex flex-col gap-2">
-                       <label for="contact" class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-charcoal">Email or Phone Number</label>
-                       <input type="text" id="contact" name="contact" required class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors" placeholder="contact@example.com">
-                    </div>
-                    
-                    <div class="flex flex-col gap-2">
-                       <label for="requirement" class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-charcoal">Briefly describe your need</label>
-                       <textarea id="requirement" name="requirement" rows="3" required class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors resize-none" placeholder="I am looking to build a new portfolio website..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="mt-4 self-start font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-10 py-4 transition-colors">
-                       Send Inquiry
-                    </button>
-                 </form>
+                 <div class="flex flex-col gap-8">
+                    <a href="https://wa.me/917603838356?text=Hi%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="self-start font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-10 py-4 transition-colors">
+                       Enquire on WhatsApp
+                    </a>
+                 </div>
               </div>
               
            </div>
