@@ -1,0 +1,42 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f4ef;
+  /* porcelain */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #003153; /* prussian blue */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1B1B1E;
+  /* carbon-black */
+}
+
+/* Scroll-Triggered Micro-Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth Page Transitions */
+.page-fade {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.page-fade.fade-out {
+  opacity: 0;
+}

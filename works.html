@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <title>Works � MOZHI</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+  
+  <link href="main.css" rel="stylesheet"/>
+  <script src="main.js" defer></script>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "heritage-ivory": "#f0f4ef",
+            "heritage-cream": "#f0f4ef",
+            "heritage-charcoal": "#1B1B1E",
+            "heritage-muted": "#6e7a8a",
+            "heritage-green": "#003153",
+            "heritage-border": "#cddff0",
+          },
+          fontFamily: {
+            "display": ["Playfair Display", "serif"],
+            "body": ["EB Garamond", "serif"],
+            "sans": ["Inter", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    :root {
+      --spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --draw-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --settle-ease: cubic-bezier(0.33, 1, 0.68, 1);
+      --nav-travel-ease: cubic-bezier(0.16, 1, 0.25, 1);
+    }
+
+    #spatial-brand-carrier {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(0);
+      z-index: 100;
+      pointer-events: none;
+      width: min(88vw, 560px);
+      transition: top 0.9s var(--nav-travel-ease), left 0.9s var(--nav-travel-ease), transform 0.9s var(--nav-travel-ease), width 0.9s var(--nav-travel-ease);
+      will-change: transform;
+    }
+
+    #spatial-brand-carrier.docked {
+      top: 2.5rem;
+      left: max(1.5rem, calc(50vw - 36rem + 1.5rem));
+      transform: translate(0, 0) translateZ(0);
+      width: 140px;
+    }
+
+    @media (min-width: 768px) {
+      #spatial-brand-carrier.docked {
+        top: 2.5rem;
+        left: max(3rem, calc(50vw - 36rem + 3rem));
+        width: 154px;
+      }
+    }
+
+    .mozhi-path {
+      stroke: #003153;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      will-change: stroke-dashoffset, stroke;
+    }
+
+    .mozhi-svg {
+      transform-origin: center center;
+      transition: transform 0.4s var(--settle-ease);
+      will-change: transform;
+    }
+
+    .mozhi-svg.settled {
+      transform: scale(1);
+    }
+
+    #spatial-brand-carrier.docked .mozhi-path {
+      stroke: #1B1B1E;
+      transition: stroke 0.6s var(--spring-ease);
+    }
+
+    .content-canvas {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s var(--nav-travel-ease), transform 0.9s var(--nav-travel-ease);
+      will-change: opacity, transform;
+    }
+
+    .content-canvas.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-heritage-ivory text-heritage-green font-sans font-bold text-xl antialiased selection:bg-heritage-green selection:text-heritage-ivory overflow-x-hidden min-h-screen">
+
+  <div class="flex items-center docked" id="spatial-brand-carrier">
+    <svg class="w-full h-auto mozhi-svg drop-shadow-sm settled" fill="none" id="brand-svg" viewbox="0 0 540 100" xmlns="http://www.w3.org/2000/svg">
+      <path class="mozhi-path" d="M 28 84 L 28 16 L 68 58 L 108 16 L 108 84" id="path-m" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 194 50 C 194 28 178 14 158 14 C 138 14 122 28 122 50 C 122 72 138 86 158 86 C 178 86 194 72 194 50 Z" id="path-o" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 214 16 L 274 16 L 214 84 L 274 84" id="path-z" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 300 84 L 300 16 M 300 50 L 354 50 M 354 16 L 354 84" id="path-h" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 388 16 L 388 84" id="path-i" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 428 50 L 444 34 L 460 50 L 444 66 Z" id="path-glyph" stroke-width="8" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+    </svg>
+  </div>
+
+  <div class="relative z-10 w-full min-h-screen flex flex-col justify-between mx-auto max-w-6xl" id="main-content-wrapper">
+    
+    <header class="w-full px-6 md:px-12 py-10 border-b border-heritage-border flex flex-col md:flex-row md:items-center justify-between gap-6 content-canvas revealed">
+      <div class="flex items-center gap-3">
+        <div class="w-36 sm:w-40 h-8 flex items-center"></div>
+      </div>
+      <nav class="flex flex-wrap justify-center items-center gap-4 sm:gap-10 border-t md:border-t-0 border-heritage-border pt-4 md:pt-0">
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="index.html">Home</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green transition-colors" href="works.html">Works</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="services.html">Services</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="about.html">About</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="about.html#inquiry">Inquire</a>
+      </nav>
+    </header>
+
+    <main class="flex-1 w-full px-6 md:px-12 py-20 content-canvas revealed">
+      <div class="flex flex-col gap-6 pb-12 border-b border-heritage-border scroll-reveal">
+        <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold">Portfolio</span>
+        <h2 class="font-display text-4xl md:text-5xl italic">Selected Works</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+        <!-- Project 1 -->
+        <div class="group cursor-pointer scroll-reveal">
+          <div class="w-full aspect-[4/3] p-2 border border-heritage-border bg-white overflow-hidden">
+            <a href="https://sriram2105-k.github.io/mock_nexplora_2026/" target="_blank" class="block w-full h-full overflow-hidden"><img class="w-full h-full object-cover grayscale opacity-90 contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" src="nexplora.png" alt="Nexplora Event Platform"/></a>
+          </div>
+          <div class="mt-6 flex flex-col gap-2">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">01 / Event Platform</span>
+            <h3 class="font-display text-2xl group-hover:text-heritage-green transition-colors">Nexplora</h3>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="group cursor-pointer md:mt-24 scroll-reveal">
+          <div class="w-full aspect-[4/3] p-2 border border-heritage-border bg-white overflow-hidden">
+            <a href="https://velmurugan-motors.vercel.app/" target="_blank" class="block w-full h-full overflow-hidden"><img class="w-full h-full object-cover grayscale opacity-90 contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" src="velmurugan.png" alt="Velmurugan Hero Motors Project"/></a>
+          </div>
+          <div class="mt-6 flex flex-col gap-2">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">02 / Dealership Platform</span>
+            <h3 class="font-display text-2xl group-hover:text-heritage-green transition-colors">Velmurugan Hero</h3>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="group cursor-pointer scroll-reveal">
+          <div class="w-full aspect-[4/3] p-2 border border-heritage-border bg-white overflow-hidden">
+            <a href="https://sriram2105-k.github.io/mannvasam/" target="_blank" class="block w-full h-full overflow-hidden"><img class="w-full h-full object-cover grayscale opacity-90 contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" src="mannvasam.png" alt="Mannvasam Layout Map"/></a>
+          </div>
+          <div class="mt-6 flex flex-col gap-2">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">03 / Real Estate Showcase</span>
+            <h3 class="font-display text-2xl group-hover:text-heritage-green transition-colors">Mannvasam</h3>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="group cursor-pointer md:mt-24 scroll-reveal">
+          <div class="w-full aspect-[4/3] p-2 border border-heritage-border bg-white overflow-hidden">
+            <img class="w-full h-full object-cover grayscale opacity-90 contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1470&auto=format&fit=crop" alt="Project 4"/>
+          </div>
+          <div class="mt-6 flex flex-col gap-2">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">04 / Growth Campaign</span>
+            <h3 class="font-display text-2xl group-hover:text-heritage-green transition-colors">Lumina Arts</h3>
+          </div>
+        </div>
+      </div>
+      
+      <!-- New Call to Action -->
+      <div class="mt-32 pt-16 border-t border-heritage-border flex flex-col items-center text-center">
+        <h3 class="font-display text-4xl mb-6">Have a project in mind?</h3>
+        <a class="group inline-flex items-center gap-4 font-sans text-xs uppercase tracking-widest font-semibold text-heritage-green hover:text-heritage-charcoal transition-colors" href="about.html#inquiry">
+          <span>Discuss your vision</span>
+          <span class="material-symbols-outlined transform group-hover:translate-x-2 transition-transform duration-300">arrow_right_alt</span>
+        </a>
+      </div>
+    </main>
+    
+    <footer class="content-canvas revealed w-full px-6 md:px-12 py-8 border-t border-heritage-border flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
+       <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">� 2026 Mozhi Digital</span>
+       <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">Quality & Discretion</span>
+    </footer>
+    
+  </div>
+</body>
+</html>

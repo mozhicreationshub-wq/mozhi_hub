@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <title>Services — MOZHI</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+  
+  <link href="main.css" rel="stylesheet"/>
+  <script src="main.js" defer></script>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "heritage-ivory": "#f0f4ef",
+            "heritage-cream": "#f0f4ef",
+            "heritage-charcoal": "#1B1B1E",
+            "heritage-muted": "#6e7a8a",
+            "heritage-green": "#003153",
+            "heritage-border": "#cddff0",
+          },
+          fontFamily: {
+            "display": ["Playfair Display", "serif"],
+            "body": ["EB Garamond", "serif"],
+            "sans": ["Inter", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    :root {
+      --spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --draw-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --settle-ease: cubic-bezier(0.33, 1, 0.68, 1);
+      --nav-travel-ease: cubic-bezier(0.16, 1, 0.25, 1);
+    }
+
+    #spatial-brand-carrier {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(0);
+      z-index: 100;
+      pointer-events: none;
+      width: min(88vw, 560px);
+      transition: top 0.9s var(--nav-travel-ease), left 0.9s var(--nav-travel-ease), transform 0.9s var(--nav-travel-ease), width 0.9s var(--nav-travel-ease);
+      will-change: transform;
+    }
+
+    #spatial-brand-carrier.docked {
+      top: 2.5rem;
+      left: max(1.5rem, calc(50vw - 36rem + 1.5rem));
+      transform: translate(0, 0) translateZ(0);
+      width: 140px;
+    }
+
+    @media (min-width: 768px) {
+      #spatial-brand-carrier.docked {
+        top: 2.5rem;
+        left: max(3rem, calc(50vw - 36rem + 3rem));
+        width: 154px;
+      }
+    }
+
+    .mozhi-path {
+      stroke: #003153;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      will-change: stroke-dashoffset, stroke;
+    }
+
+    .mozhi-svg {
+      transform-origin: center center;
+      transition: transform 0.4s var(--settle-ease);
+      will-change: transform;
+    }
+
+    .mozhi-svg.settled {
+      transform: scale(1);
+    }
+
+    #spatial-brand-carrier.docked .mozhi-path {
+      stroke: #1B1B1E;
+      transition: stroke 0.6s var(--spring-ease);
+    }
+
+    .content-canvas {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s var(--nav-travel-ease), transform 0.9s var(--nav-travel-ease);
+      will-change: opacity, transform;
+    }
+
+    .content-canvas.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-heritage-ivory text-heritage-green font-sans font-bold text-xl antialiased selection:bg-heritage-green selection:text-heritage-ivory overflow-x-hidden min-h-screen">
+
+  <div class="flex items-center docked" id="spatial-brand-carrier">
+    <svg class="w-full h-auto mozhi-svg drop-shadow-sm settled" fill="none" id="brand-svg" viewbox="0 0 540 100" xmlns="http://www.w3.org/2000/svg">
+      <path class="mozhi-path" d="M 28 84 L 28 16 L 68 58 L 108 16 L 108 84" id="path-m" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 194 50 C 194 28 178 14 158 14 C 138 14 122 28 122 50 C 122 72 138 86 158 86 C 178 86 194 72 194 50 Z" id="path-o" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 214 16 L 274 16 L 214 84 L 274 84" id="path-z" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 300 84 L 300 16 M 300 50 L 354 50 M 354 16 L 354 84" id="path-h" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 388 16 L 388 84" id="path-i" stroke-width="11" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+      <path class="mozhi-path" d="M 428 50 L 444 34 L 460 50 L 444 66 Z" id="path-glyph" stroke-width="8" style="stroke-dashoffset: 0; stroke: #003153; transition: none;"></path>
+    </svg>
+  </div>
+
+  <div class="relative z-10 w-full min-h-screen flex flex-col justify-between mx-auto max-w-6xl" id="main-content-wrapper">
+    
+    <header class="w-full px-6 md:px-12 py-10 border-b border-heritage-border flex flex-col md:flex-row md:items-center justify-between gap-6 content-canvas revealed">
+      <div class="flex items-center gap-3">
+        <div class="w-36 sm:w-40 h-8 flex items-center"></div>
+      </div>
+      <nav class="flex flex-wrap justify-center items-center gap-4 sm:gap-10 border-t md:border-t-0 border-heritage-border pt-4 md:pt-0">
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="index.html">Home</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="works.html">Works</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green transition-colors" href="services.html">Services</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="about.html">About</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="about.html#inquiry">Inquire</a>
+      </nav>
+    </header>
+
+    <main class="flex-1 w-full px-6 md:px-12 py-20 content-canvas revealed">
+      
+      <div class="flex flex-col gap-6 pb-12 border-b border-heritage-border">
+        <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold">What We Do</span>
+        <h2 class="font-display text-4xl md:text-5xl italic">Our Expertise</h2>
+      </div>
+      
+      <div class="flex flex-col border-b border-heritage-border">
+         
+         <!-- Service Row 1: Build -->
+         <button id="service-build" data-service="build" class="service-row w-full text-left grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-heritage-border items-start group cursor-pointer transition-colors duration-300 hover:bg-heritage-cream/30 -mx-2 px-2 rounded-sm">
+           <div class="md:col-span-2">
+              <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">01 / Build</span>
+           </div>
+           <div class="md:col-span-4">
+              <h3 class="font-display text-3xl group-hover:text-heritage-green transition-colors duration-300">Websites & Platforms</h3>
+           </div>
+           <div class="md:col-span-5">
+              <p class="font-body text-lg text-heritage-muted leading-relaxed">
+                 Websites and digital platforms built meticulously around your business and your audience. We craft digital spaces that are timeless, structural, and inherently functional.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Business Websites</span>
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Custom Applications</span>
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">E-commerce</span>
+              </div>
+           </div>
+           <div class="md:col-span-1 flex items-center justify-end">
+              <span class="material-symbols-outlined text-heritage-border group-hover:text-heritage-green transition-all duration-300 group-hover:translate-x-1">arrow_forward</span>
+           </div>
+         </button>
+         
+         <!-- Service Row 2: Automate -->
+         <button id="service-automate" data-service="automate" class="service-row w-full text-left grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-heritage-border items-start group cursor-pointer transition-colors duration-300 hover:bg-heritage-cream/30 -mx-2 px-2 rounded-sm">
+           <div class="md:col-span-2">
+              <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green font-semibold">02 / Automate</span>
+           </div>
+           <div class="md:col-span-4">
+              <h3 class="font-display text-3xl text-heritage-green group-hover:text-heritage-charcoal transition-colors duration-300">Workflow Automation</h3>
+           </div>
+           <div class="md:col-span-5">
+              <p class="font-body text-lg text-heritage-muted leading-relaxed">
+                 Turn repetitive tasks into connected workflows that work quietly in the background. We bring efficiency and elegance to your business processes.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Lead Management</span>
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">API Integrations</span>
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Data Workflows</span>
+              </div>
+           </div>
+           <div class="md:col-span-1 flex items-center justify-end">
+              <span class="material-symbols-outlined text-heritage-border group-hover:text-heritage-green transition-all duration-300 group-hover:translate-x-1">arrow_forward</span>
+           </div>
+         </button>
+         
+         <!-- Service Row 3: Grow -->
+         <button id="service-grow" data-service="grow" class="service-row w-full text-left grid grid-cols-1 md:grid-cols-12 gap-8 py-12 items-start group cursor-pointer transition-colors duration-300 hover:bg-heritage-cream/30 -mx-2 px-2 rounded-sm">
+           <div class="md:col-span-2">
+              <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">03 / Grow</span>
+           </div>
+           <div class="md:col-span-4">
+              <h3 class="font-display text-3xl group-hover:text-heritage-green transition-colors duration-300">Search & Social Reach</h3>
+           </div>
+           <div class="md:col-span-5">
+              <p class="font-body text-lg text-heritage-muted leading-relaxed">
+                 Get your business in front of people actively searching for what you offer, with calculated and elegant Google and Meta advertising campaigns.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Google Ads</span>
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Meta Campaigns</span>
+                 <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Audience Targeting</span>
+              </div>
+           </div>
+           <div class="md:col-span-1 flex items-center justify-end">
+              <span class="material-symbols-outlined text-heritage-border group-hover:text-heritage-green transition-all duration-300 group-hover:translate-x-1">arrow_forward</span>
+           </div>
+         </button>
+      </div>
+      
+      <!-- New Technology & Craft Section -->
+      <div class="py-16 border-b border-heritage-border max-w-5xl mx-auto text-center mt-12">
+        <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold block mb-8">Technology & Craft</span>
+        <h3 class="font-display text-3xl mb-12">Engineered for Scale</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-70">
+          <span class="font-sans text-xs uppercase tracking-widest text-heritage-charcoal">React & Next.js</span>
+          <span class="font-sans text-xs uppercase tracking-widest text-heritage-charcoal">Tailwind CSS</span>
+          <span class="font-sans text-xs uppercase tracking-widest text-heritage-charcoal">Python & Django</span>
+          <span class="font-sans text-xs uppercase tracking-widest text-heritage-charcoal">AWS Architecture</span>
+        </div>
+      </div>
+      
+      <!-- New The Outcome Section -->
+      <div class="py-24 text-center max-w-3xl mx-auto">
+        <h3 class="font-display text-4xl mb-6">Built for Speed, Designed to Convert.</h3>
+        <p class="font-body text-xl text-heritage-muted leading-relaxed">
+          Every solution we build is subjected to rigorous performance testing. We don't just write code; we engineer digital assets that load instantly and guide the user naturally towards your goals.
+        </p>
+      </div>
+    </main>
+    
+    <footer class="content-canvas revealed w-full px-6 md:px-12 py-8 border-t border-heritage-border flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
+       <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">© 2026 Mozhi Digital</span>
+       <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">Quality & Discretion</span>
+    </footer>
+    
+  </div>
+
+  <!-- Service Detail Panel (Slide-up) -->
+  <div id="service-backdrop" style="position:fixed;inset:0;background:rgba(27,27,30,0);z-index:200;pointer-events:none;transition:background 0.4s ease;"></div>
+  <div id="service-panel" style="position:fixed;bottom:0;left:0;right:0;z-index:201;background:#f0f4ef;border-top:1px solid #cddff0;transform:translateY(100%);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);max-height:80vh;overflow-y:auto;">
+    <div class="max-w-6xl mx-auto px-6 md:px-12 py-10 md:py-14">
+      <div class="flex items-start justify-between mb-10">
+        <div>
+          <span id="panel-label" class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold block mb-3"></span>
+          <h2 id="panel-title" class="font-display text-3xl md:text-4xl text-heritage-charcoal"></h2>
+        </div>
+        <button id="panel-close" aria-label="Close panel" class="flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-heritage-muted hover:text-heritage-green transition-colors mt-1">
+          <span>Close</span>
+          <span class="material-symbols-outlined" style="font-size:18px;">close</span>
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div class="md:col-span-5">
+          <p id="panel-description" class="font-body text-xl text-heritage-muted leading-relaxed"></p>
+          <a href="about.html#inquiry" id="panel-cta" class="group mt-10 inline-flex items-center gap-3 font-sans text-xs uppercase tracking-widest font-semibold text-heritage-green hover:text-heritage-charcoal transition-colors">
+            <span>Inquire about this service</span>
+            <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform" style="font-size:16px;">arrow_forward</span>
+          </a>
+        </div>
+        <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6" id="panel-details-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .service-row { border: none; background: none; font-family: inherit; }
+  </style>
+
+  <script>
+    (function() {
+      const services = {
+        build: {
+          label: '01 / Build',
+          title: 'Websites & Digital Platforms',
+          description: 'We architect and craft bespoke websites and custom web applications, treating each line of code as a structural element. From a brand-defining portfolio site to a complex SaaS platform, we engineer for reliability, performance, and lasting aesthetic value.',
+          details: [
+            { heading: 'Business Websites', body: 'Timeless, responsive sites that embody your brand\'s authority and drive qualified leads organically.' },
+            { heading: 'Custom Web Applications', body: 'Tailored portals, dashboards, and tools built on robust frameworks to power your operations.' },
+            { heading: 'E-Commerce Architecture', body: 'Conversion-focused storefronts with seamless checkout flows, inventory logic, and editorial presentation.' },
+            { heading: 'Performance & SEO', body: 'Sub-second load times, clean semantic HTML, and structured data baked in from the foundation up.' },
+          ]
+        },
+        automate: {
+          label: '02 / Automate',
+          title: 'Workflow Automation',
+          description: 'We map your business processes and engineer elegant automations that eliminate repetitive manual work. The result is a quieter, more efficient operation that scales without proportional headcount growth—letting your team focus on what truly matters.',
+          details: [
+            { heading: 'Lead Management', body: 'Automated pipelines that capture, score, and route leads to the right team member instantly.' },
+            { heading: 'API Integrations', body: 'Connect your CRM, invoicing, scheduling, and marketing tools into one seamless data ecosystem.' },
+            { heading: 'Data Workflows & Reporting', body: 'Scheduled reports, data transformation pipelines, and dashboards that give you a live pulse on your business.' },
+            { heading: 'Document Automation', body: 'Auto-generated proposals, contracts, and onboarding packets triggered by client actions.' },
+          ]
+        },
+        grow: {
+          label: '03 / Grow',
+          title: 'Search & Social Reach',
+          description: 'Calculated, elegant advertising campaigns on Google and Meta, engineered to put your offering in front of the right audience at the right moment. We don\'t buy impressions; we engineer attention with disciplined targeting, compelling creative, and rigorous A/B testing.',
+          details: [
+            { heading: 'Google Search Campaigns', body: 'Precision keyword targeting with compelling ad copy that captures high-intent buyers.' },
+            { heading: 'Meta (Facebook & Instagram)', body: 'Visually arresting campaigns built for brand awareness and direct-response conversion.' },
+            { heading: 'Audience Architecture', body: 'Custom and lookalike audiences built from your first-party data to maximize ad spend efficiency.' },
+            { heading: 'Analytics & Reporting', body: 'Transparent dashboards tracking ROAS, CAC, and conversion paths so you always know your return.' },
+          ]
+        }
+      };
+
+      const panel = document.getElementById('service-panel');
+      const backdrop = document.getElementById('service-backdrop');
+      const closeBtn = document.getElementById('panel-close');
+
+      function openPanel(key) {
+        const s = services[key];
+        if (!s) return;
+        document.getElementById('panel-label').textContent = s.label;
+        document.getElementById('panel-title').textContent = s.title;
+        document.getElementById('panel-description').textContent = s.description;
+        const grid = document.getElementById('panel-details-grid');
+        grid.innerHTML = s.details.map(d => `
+          <div class="border-t border-heritage-border pt-6">
+            <h4 class="font-sans text-[10px] uppercase tracking-widest font-semibold text-heritage-green mb-3">${d.heading}</h4>
+            <p class="font-body text-lg text-heritage-muted leading-relaxed">${d.body}</p>
+          </div>
+        `).join('');
+        panel.style.transform = 'translateY(0)';
+        backdrop.style.background = 'rgba(27,27,30,0.4)';
+        backdrop.style.pointerEvents = 'auto';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePanel() {
+        panel.style.transform = 'translateY(100%)';
+        backdrop.style.background = 'rgba(27,27,30,0)';
+        backdrop.style.pointerEvents = 'none';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.service-row').forEach(btn => {
+        btn.addEventListener('click', () => openPanel(btn.dataset.service));
+      });
+      closeBtn.addEventListener('click', closePanel);
+      backdrop.addEventListener('click', closePanel);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+    })();
+  </script>
+</body>
+</html>

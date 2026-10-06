@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://source.unsplash.com; connect-src 'self' https://*.supabase.co; object-src 'none';">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  <title>MOZHI — Digital Solutions Hub</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+  
+  <link href="main.css" rel="stylesheet"/>
+  <script src="main.js" defer></script>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "heritage-ivory": "#f0f4ef",
+            "heritage-cream": "#f0f4ef",
+            "heritage-charcoal": "#1B1B1E",
+            "heritage-muted": "#6e7a8a",
+            "heritage-green": "#003153",
+            "heritage-border": "#cddff0",
+          },
+          fontFamily: {
+            "display": ["Playfair Display", "serif"],
+            "body": ["EB Garamond", "serif"],
+            "sans": ["Inter", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      font-feature-settings: 'liga';
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    :root {
+      --spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --draw-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --settle-ease: cubic-bezier(0.33, 1, 0.68, 1);
+      --nav-travel-ease: cubic-bezier(0.16, 1, 0.25, 1);
+    }
+
+    #spatial-brand-carrier {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(0);
+      z-index: 100;
+      pointer-events: none;
+      width: min(88vw, 560px);
+      transition: top 0.9s var(--nav-travel-ease),
+                  left 0.9s var(--nav-travel-ease),
+                  transform 0.9s var(--nav-travel-ease),
+                  width 0.9s var(--nav-travel-ease);
+      will-change: transform;
+    }
+
+    /* Docked coordinate anchored precisely in top-left navigation of max-w-6xl container */
+    #spatial-brand-carrier.docked {
+      top: 2.5rem;
+      left: max(1.5rem, calc(50vw - 36rem + 1.5rem));
+      transform: translate(0, 0) translateZ(0);
+      width: 140px;
+    }
+
+    @media (min-width: 768px) {
+      #spatial-brand-carrier.docked {
+        top: 2.5rem;
+        left: max(3rem, calc(50vw - 36rem + 3rem));
+        width: 154px;
+      }
+    }
+
+    .mozhi-path {
+      stroke: #003153; /* heritage-green */
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      will-change: stroke-dashoffset, stroke;
+    }
+
+    .mozhi-svg {
+      transform-origin: center center;
+      transition: transform 0.4s var(--settle-ease);
+      will-change: transform;
+    }
+
+    .mozhi-svg.settled {
+      transform: scale(1);
+    }
+
+    #spatial-brand-carrier.docked .mozhi-path {
+      stroke: #1B1B1E; /* heritage-charcoal */
+      transition: stroke 0.6s var(--spring-ease);
+    }
+
+    .content-canvas {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s var(--nav-travel-ease), transform 0.9s var(--nav-travel-ease);
+      will-change: opacity, transform;
+    }
+
+    .content-canvas.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .mozhi-path {
+        transition: none !important;
+        stroke-dashoffset: 0 !important;
+        stroke: #1B1B1E !important;
+        fill: none !important;
+      }
+      #spatial-brand-carrier {
+        transition: none !important;
+        top: 2.5rem !important;
+        left: max(3rem, calc(50vw - 36rem + 3rem)) !important;
+        transform: translate(0, 0) !important;
+        width: 154px !important;
+      }
+      .content-canvas {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      #intro-curtain {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-heritage-ivory text-heritage-green font-sans font-bold text-xl antialiased selection:bg-heritage-green selection:text-heritage-ivory overflow-x-hidden min-h-screen">
+
+  <div aria-hidden="true" class="fixed inset-0 z-50 bg-heritage-ivory pointer-events-auto flex items-center justify-center transition-opacity duration-900 ease-out" id="intro-curtain">
+    <div aria-live="polite" class="sr-only" id="intro-announcer">Intro playing: Mozhi Digital Solutions Hub</div>
+  </div>
+
+  <div class="flex items-center" id="spatial-brand-carrier">
+    <svg class="w-full h-auto mozhi-svg drop-shadow-sm" fill="none" id="brand-svg" viewbox="0 0 540 100" xmlns="http://www.w3.org/2000/svg">
+      <path class="mozhi-path" d="M 28 84 L 28 16 L 68 58 L 108 16 L 108 84" id="path-m" stroke-width="11"></path>
+      <path class="mozhi-path" d="M 194 50 C 194 28 178 14 158 14 C 138 14 122 28 122 50 C 122 72 138 86 158 86 C 178 86 194 72 194 50 Z" id="path-o" stroke-width="11"></path>
+      <path class="mozhi-path" d="M 214 16 L 274 16 L 214 84 L 274 84" id="path-z" stroke-width="11"></path>
+      <path class="mozhi-path" d="M 300 84 L 300 16 M 300 50 L 354 50 M 354 16 L 354 84" id="path-h" stroke-width="11"></path>
+      <path class="mozhi-path" d="M 388 16 L 388 84" id="path-i" stroke-width="11"></path>
+      <path class="mozhi-path" d="M 428 50 L 444 34 L 460 50 L 444 66 Z" id="path-glyph" stroke-width="8"></path>
+    </svg>
+  </div>
+
+  <div class="relative z-10 w-full min-h-screen flex flex-col justify-between mx-auto max-w-6xl" id="main-content-wrapper">
+    
+    <header class="w-full px-6 md:px-12 py-4 border-b border-heritage-border flex flex-col md:flex-row md:items-center justify-between gap-4 content-canvas">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-36 sm:w-40 h-8 flex items-center" id="nav-brand-target"></div>
+      </div>
+      
+      <nav class="flex flex-wrap justify-center items-center gap-4 sm:gap-10 border-t md:border-t-0 border-heritage-border pt-4 md:pt-0">
+
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-green transition-colors" href="index.html">Home</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="works.html">Works</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="services.html">Services</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="about.html">About</a>
+        <a class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-heritage-muted hover:text-heritage-green transition-colors" href="#inquiry">Inquire</a>
+      </nav>
+      
+    </header>
+
+    <main class="flex-1 w-full px-6 md:px-12 py-6 content-canvas">
+      
+      <div class="relative flex flex-col items-center text-center gap-6 py-16 md:py-32 w-full overflow-hidden">
+        
+        <!-- Left Decorative Design -->
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/3 w-[45rem] h-[45rem] opacity-90 pointer-events-none hidden lg:block" style="-webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%); mask-image: radial-gradient(circle, black 30%, transparent 70%);">
+          <img src="landing%20page%20design.png" class="w-full h-full object-cover brightness-75" alt="" aria-hidden="true">
+        </div>
+
+        <!-- Right Decorative Design -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 w-[45rem] h-[45rem] opacity-90 pointer-events-none hidden lg:block" style="-webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%); mask-image: radial-gradient(circle, black 30%, transparent 70%);">
+          <img src="landing%20page%20design.png" class="w-full h-full object-cover brightness-75 transform -scale-x-100" alt="" aria-hidden="true">
+        </div>
+
+        <!-- Center Text -->
+        <div class="relative z-10 max-w-3xl flex flex-col items-center gap-5">
+          <div class="inline-flex items-center justify-center gap-3 scroll-reveal">
+             <span class="block w-8 h-[1px] bg-heritage-green hidden sm:block"></span>
+             <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-green font-semibold">Digital Solutions Hub</span>
+             <span class="block w-8 h-[1px] bg-heritage-green hidden sm:block"></span>
+          </div>
+          
+          <h2 class="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight scroll-reveal">
+            Your digital needs, <br class="hidden sm:inline"/>
+            <span class="italic ">in one place.</span>
+          </h2>
+          
+          <p class="font-body text-xl lg:text-2xl text-heritage-muted leading-relaxed max-w-xl scroll-reveal">
+            Whether you need to build something, automate your work, or reach more customers, Mozhi turns requirements into refined digital solutions.
+          </p>
+          
+          <div class="pt-6 border-t border-heritage-border max-w-sm w-full mt-4">
+             <a class="group inline-flex items-center justify-center gap-4 w-full font-sans text-xs uppercase tracking-widest font-semibold text-heritage-green hover:text-heritage-green transition-colors" href="#inquiry">
+                <span>Submit an Inquiry</span>
+                <span class="material-symbols-outlined transform group-hover:translate-x-2 transition-transform duration-300">arrow_right_alt</span>
+             </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- New Introduction Section -->
+      <div class="mt-12 md:mt-16 pt-8 border-t border-heritage-border flex flex-col items-center text-center max-w-4xl mx-auto scroll-reveal">
+        <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-green font-semibold mb-4">The Philosophy</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight">
+          We believe in <span class="italic">digital architecture</span> that stands the test of time. No generic templates. No fragile code.
+        </h2>
+        <p class="font-body text-xl text-heritage-muted mt-4 max-w-2xl">
+          A digital presence should be structurally sound, aesthetically profound, and tailored meticulously to the entity it represents.
+        </p>
+      </div>
+      
+      <!-- New Featured Work Teaser -->
+      <div class="mt-12 md:mt-16 pb-8">
+        <div class="flex justify-between items-end border-b border-heritage-border pb-4 mb-6">
+          <div>
+            <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold block mb-2">Portfolio</span>
+            <h2 class="font-display text-3xl md:text-4xl italic">Selected Case Study</h2>
+          </div>
+          <a class="font-sans text-[10px] uppercase tracking-widest text-heritage-green hover:text-heritage-charcoal transition-colors hidden sm:inline-block" href="works.html">View All Works</a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center group cursor-pointer" onclick="window.location.href='works.html'">
+          <div class="w-full aspect-video p-2 border border-heritage-border bg-white overflow-hidden">
+            <img class="w-full h-full object-cover opacity-90 contrast-125 group-hover:scale-105 transition-all duration-700 ease-out" src="velmurugan.png" alt="Velmurugan Hero Motors"/>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">01 / Dealership Platform</span>
+            <h3 class="font-display text-3xl md:text-4xl group-hover:text-heritage-green transition-colors">Velmurugan Hero</h3>
+            <p class="font-body text-lg text-heritage-muted mt-2">
+              A modern digital platform for a prominent dealership, enhancing their online presence and customer engagement.
+            </p>
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-charcoal font-semibold mt-4 flex items-center gap-2">
+              Explore Case Study <span class="material-symbols-outlined text-xs transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Process Section -->
+      <div class="mt-12 md:mt-16 pt-8 border-t border-heritage-border">
+        <div class="mb-6">
+          <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold block mb-2">Our Process</span>
+          <h2 class="font-display text-3xl md:text-4xl italic">How We Build</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div class="flex flex-col gap-4 border-l border-heritage-green pl-6 scroll-reveal">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green">Phase 01</span>
+            <h3 class="font-display text-2xl">Blueprint & Strategy</h3>
+            <p class="font-body text-lg text-heritage-muted leading-relaxed">
+              We begin by deeply understanding your goals. We map out the architecture of your digital presence before writing a single line of code.
+            </p>
+          </div>
+          <div class="flex flex-col gap-4 border-l border-heritage-border pl-6 hover:border-heritage-green transition-colors duration-500 scroll-reveal">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">Phase 02</span>
+            <h3 class="font-display text-2xl">Craft & Engineering</h3>
+            <p class="font-body text-lg text-heritage-muted leading-relaxed">
+              Meticulous development combined with purposeful design. Every pixel and function is crafted to ensure a robust, high-performance experience.
+            </p>
+          </div>
+          <div class="flex flex-col gap-4 border-l border-heritage-border pl-6 hover:border-heritage-green transition-colors duration-500 scroll-reveal">
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">Phase 03</span>
+            <h3 class="font-display text-2xl">Refinement & Launch</h3>
+            <p class="font-body text-lg text-heritage-muted leading-relaxed">
+              Rigorous testing and polishing. We ensure your digital asset is flawless before it meets the world, standing strong and secure.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Founder's Note -->
+      <div class="mt-12 md:mt-16 pb-8 pt-8 border-t border-heritage-border">
+        <div class="flex flex-col gap-8 scroll-reveal max-w-3xl mx-auto">
+          <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold">The People Behind the Code</span>
+          <h2 class="font-display text-3xl md:text-5xl leading-tight">
+            "We build digital spaces that feel less like software, and more like <span class="italic">home</span>."
+          </h2>
+          <div class="font-body text-lg md:text-xl text-heritage-muted space-y-6">
+            <p>
+              When I started Mozhi, the web felt cluttered with disposable templates and fragile solutions. I wanted to create a studio that brings the discipline of traditional architecture into the digital realm.
+            </p>
+            <p>
+              Every project we take on is a commitment to craftsmanship. We aren't just an agency you hire; we are partners who take pride in the foundation, the structure, and the finishing touches of your online presence. Welcome to our space. Let's build something lasting together.
+            </p>
+          </div>
+          <div class="mt-4 pt-6 border-t border-heritage-border max-w-xs">
+            <p class="font-display italic text-2xl text-heritage-charcoal">The Mozhi Team</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Words from Partners -->
+      <div class="mt-8 md:mt-12 pt-8 border-t border-heritage-border">
+        <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold block mb-6 text-center">Words from Partners</span>
+        <div class="flex flex-col gap-8 max-w-4xl mx-auto">
+          <div class="text-center scroll-reveal">
+            <p class="font-display text-2xl md:text-3xl italic leading-relaxed text-heritage-charcoal">
+              "Working with Mozhi was like watching a master craftsman at work. The attention to detail and structural integrity of the code is unmatched."
+            </p>
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green font-semibold block mt-6">Sarah Jenkins — Founder, Aura Botanica</span>
+          </div>
+          
+          <div class="text-center scroll-reveal">
+            <p class="font-display text-2xl md:text-3xl italic leading-relaxed text-heritage-charcoal">
+              "They automated our entire lead pipeline seamlessly. We save over 40 hours a week now. Absolutely vital to our growth."
+            </p>
+            <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-green font-semibold block mt-6">David Chen — Director, Veridian Logistics</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Inquiry Form Section -->
+      <div id="inquiry" class="mt-24 pt-16 border-t border-heritage-border grid grid-cols-1 lg:grid-cols-2 gap-16 pb-16">
+        <div>
+          <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-muted font-semibold block mb-8">Start a Project</span>
+          <h2 class="font-display text-4xl lg:text-5xl leading-tight text-heritage-charcoal mb-6">
+            Let's build something <span class="italic">lasting</span>.
+          </h2>
+          <p class="font-body text-lg text-heritage-muted max-w-md">
+            Fill out the form with your requirements. We aim to respond to all inquiries within 24 hours with next steps or a request for a discovery call.
+          </p>
+        </div>
+        
+        <div class="relative">
+          <form id="inquiry-form" novalidate class="flex flex-col gap-8" style="transition: opacity 0.5s ease, transform 0.5s ease;">
+            <div class="flex flex-col gap-2 relative">
+              <input type="text" id="name" name="name" class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors" placeholder="John Doe">
+              <span id="name-error" class="font-sans text-[10px] text-red-600 uppercase tracking-widest hidden">Please enter your name.</span>
+            </div>
+            
+            <div class="flex flex-col gap-2 relative">
+              <input type="text" id="contact-field" name="contact" class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors" placeholder="contact@example.com">
+              <span id="contact-error" class="font-sans text-[10px] text-red-600 uppercase tracking-widest hidden">Please enter your email or phone.</span>
+            </div>
+            
+            <div class="flex flex-col gap-2 relative">
+              <textarea id="requirement" name="requirement" rows="3" class="bg-transparent border-0 border-b border-heritage-border px-0 py-3 text-lg font-body focus:ring-0 focus:border-heritage-green placeholder:text-heritage-muted/50 transition-colors resize-none" placeholder="I am looking to build a new portfolio website..."></textarea>
+              <span id="requirement-error" class="font-sans text-[10px] text-red-600 uppercase tracking-widest hidden">Please describe your requirement.</span>
+            </div>
+            
+            <button type="submit" id="submit-btn" class="mt-4 self-start font-sans text-xs uppercase tracking-widest font-semibold text-heritage-ivory bg-heritage-charcoal hover:bg-heritage-green px-10 py-4 transition-all duration-300">
+              Send Inquiry
+            </button>
+          </form>
+
+          <!-- Success State -->
+          <div id="inquiry-success" class="absolute inset-0 flex flex-col items-center justify-center text-center gap-6" style="opacity:0; pointer-events:none; transition: opacity 0.6s ease 0.3s;">
+            <div class="w-12 h-12 rounded-full border-2 border-heritage-green flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined" style="font-size:24px; color:#003153;">check</span>
+            </div>
+            <span class="font-sans text-[10px] uppercase tracking-[0.25em] text-heritage-green font-semibold">Received</span>
+            <h3 class="font-display text-3xl text-heritage-charcoal">Your inquiry is on its way.</h3>
+            <p class="font-body text-lg text-heritage-muted max-w-xs">We'll be in touch within 24 hours. Thank you for reaching out.</p>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    
+    <footer class="content-canvas w-full px-6 md:px-12 py-4 border-t border-heritage-border flex flex-col sm:flex-row items-center justify-between gap-2 mt-auto">
+       <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">© <span id="current-year"></span> Mozhi Digital</span>
+       <span class="font-sans text-[10px] uppercase tracking-widest text-heritage-muted">Quality & Discretion</span>
+    </footer>
+    
+  </div>
+
+  <style>
+    @keyframes field-shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .field-error {
+      border-bottom-color: #dc2626 !important;
+      animation: field-shake 0.4s ease;
+    }
+  </style>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+
+  <script>
+    (function() {
+      // Initialize Supabase
+      const supabaseUrl = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : '';
+      const supabaseKey = typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : '';
+      let supabaseClient = null;
+      if (supabaseUrl && supabaseKey) {
+        supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+      }
+
+      const form = document.getElementById('inquiry-form');
+      const successPanel = document.getElementById('inquiry-success');
+      const submitBtn = document.getElementById('submit-btn');
+
+      function showError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        input.classList.add('field-error');
+        error.classList.remove('hidden');
+        input.addEventListener('input', function() {
+          input.classList.remove('field-error');
+          error.classList.add('hidden');
+        }, { once: true });
+      }
+
+      if (form) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const name = document.getElementById('name');
+          const contact = document.getElementById('contact-field');
+          const req = document.getElementById('requirement');
+          let valid = true;
+
+          if (!name.value.trim()) { showError('name', 'name-error'); valid = false; }
+          if (!contact.value.trim()) { showError('contact-field', 'contact-error'); valid = false; }
+          if (!req.value.trim()) { showError('requirement', 'requirement-error'); valid = false; }
+
+          if (!valid) return;
+
+          // Loading state
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = 'Sending...';
+          submitBtn.disabled = true;
+
+          // Send to Supabase
+          if (supabaseClient) {
+            const { data, error } = await supabaseClient
+              .from('enquiries')
+              .insert([
+                { 
+                  name: name.value.trim(), 
+                  contact: contact.value.trim(), 
+                  requirement: req.value.trim() 
+                }
+              ]);
+
+            if (error) {
+              console.error('Error submitting inquiry:', error);
+              alert('There was an issue sending your inquiry. Please try again later.');
+              submitBtn.innerHTML = originalBtnText;
+              submitBtn.disabled = false;
+              return;
+            }
+          } else {
+            console.warn('Supabase config not found or initialized. Skipping database insertion.');
+          }
+
+          form.style.opacity = '0';
+          form.style.transform = 'translateY(12px)';
+          form.style.pointerEvents = 'none';
+
+          successPanel.style.opacity = '1';
+          successPanel.style.pointerEvents = 'auto';
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    (function() {
+      const introCurtain = document.getElementById('intro-curtain');
+      const brandCarrier = document.getElementById('spatial-brand-carrier');
+      const brandSvg = document.getElementById('brand-svg');
+
+      const contentElements = document.querySelectorAll('.content-canvas');
+      
+      const pathM = document.getElementById('path-m');
+      const pathO = document.getElementById('path-o');
+      const pathZ = document.getElementById('path-z');
+      const pathH = document.getElementById('path-h');
+      const pathI = document.getElementById('path-i');
+      const pathGlyph = document.getElementById('path-glyph');
+      const allPaths = [pathM, pathO, pathZ, pathH, pathI, pathGlyph];
+      
+      const announcer = document.getElementById('intro-announcer');
+      const yearSpan = document.getElementById('current-year');
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+      allPaths.forEach(p => {
+        if (p) {
+          const len = Math.ceil(p.getTotalLength ? p.getTotalLength() : 500);
+          p.style.strokeDasharray = len;
+          p.style.strokeDashoffset = len;
+        }
+      });
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let sequenceTimeouts = [];
+
+      function clearScheduledPhases() {
+        sequenceTimeouts.forEach(t => clearTimeout(t));
+        sequenceTimeouts = [];
+      }
+
+      function schedule(fn, delay) {
+        const id = setTimeout(fn, delay);
+        sequenceTimeouts.push(id);
+      }
+
+      function executeChoreography() {
+        clearScheduledPhases();
+
+        if (prefersReducedMotion) {
+          introCurtain.style.display = 'none';
+          brandCarrier.classList.add('docked');
+          allPaths.forEach(p => {
+            if (p) {
+              p.style.transition = 'none';
+              p.style.strokeDashoffset = '0';
+              p.style.stroke = '#1B1B1E';
+            }
+          });
+          contentElements.forEach(el => el.classList.add('revealed'));
+          return;
+        }
+
+        introCurtain.style.display = 'flex';
+        introCurtain.style.opacity = '1';
+        introCurtain.style.pointerEvents = 'auto';
+
+        brandCarrier.classList.remove('docked');
+        brandSvg.classList.remove('settled');
+        brandSvg.style.transform = 'scale(1.002)';
+
+        allPaths.forEach(p => {
+          if (p) {
+            const len = Math.ceil(p.getTotalLength ? p.getTotalLength() : 500);
+            p.style.transition = 'none';
+            p.style.stroke = '#003153';
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+          }
+        });
+
+        contentElements.forEach(el => {
+          el.classList.remove('revealed');
+        });
+
+        if (announcer) announcer.textContent = "Silence before arrival.";
+
+        void brandSvg.offsetWidth;
+
+        schedule(() => {
+          if (pathM) {
+            pathM.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            pathM.style.strokeDashoffset = '0';
+          }
+          if (announcer) announcer.textContent = "Drawing letter M.";
+        }, 700);
+
+        schedule(() => {
+          if (pathO) {
+            pathO.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            pathO.style.strokeDashoffset = '0';
+          }
+          if (announcer) announcer.textContent = "Tracing letter O.";
+        }, 1400);
+
+        schedule(() => {
+          if (pathZ) {
+            pathZ.style.transition = 'stroke-dashoffset 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            pathZ.style.strokeDashoffset = '0';
+          }
+          if (announcer) announcer.textContent = "Tracing letter Z.";
+        }, 2000);
+
+        schedule(() => {
+          if (pathH) {
+            pathH.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            pathH.style.strokeDashoffset = '0';
+          }
+          if (announcer) announcer.textContent = "Drawing letter H.";
+        }, 2400);
+
+        schedule(() => {
+          if (pathI) {
+            pathI.style.transition = 'stroke-dashoffset 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            pathI.style.strokeDashoffset = '0';
+          }
+          if (pathGlyph) {
+            pathGlyph.style.transition = 'stroke-dashoffset 0.45s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            pathGlyph.style.strokeDashoffset = '0';
+          }
+          if (announcer) announcer.textContent = "Completing wordmark gesture.";
+        }, 2900);
+
+        schedule(() => {
+          brandSvg.classList.add('settled');
+          brandSvg.style.transform = 'scale(1)';
+          if (announcer) announcer.textContent = "Wordmark settled peacefully.";
+        }, 3400);
+
+        schedule(() => {
+          if (announcer) announcer.textContent = "Held in stillness.";
+        }, 3800);
+
+        schedule(() => {
+          brandCarrier.classList.add('docked');
+
+          contentElements.forEach(el => {
+            el.classList.add('revealed');
+          });
+
+          introCurtain.style.opacity = '0';
+          introCurtain.style.pointerEvents = 'none';
+
+          if (announcer) announcer.textContent = "Welcome to Mozhi Digital Solutions Hub.";
+        }, 3700);
+
+        schedule(() => {
+          introCurtain.style.display = 'none';
+        }, 4650);
+      }
+
+
+      window.addEventListener('DOMContentLoaded', () => {
+        executeChoreography();
+      });
+
+    })();
+  </script>
+</body>
+</html>
